@@ -16,6 +16,9 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor(a,b, op){
+  }
+}
 
 module.exports = Calculator;
