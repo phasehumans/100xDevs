@@ -2,8 +2,9 @@
 const fs= require("fs")
 
 function read(filename, cb){
-    fs.readFile(filename, "utf-8", (err, data)=>{
-        console.log("inside");
+    // readfile takes 3 args- filepath, unicode and cb
+    fs.readFile(filename, "utf-8", (err, data) =>{
+        console.log("inside callback fn");
         cb(data)
     })
 }

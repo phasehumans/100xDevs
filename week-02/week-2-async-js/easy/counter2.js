@@ -9,13 +9,14 @@
 
 let count= 0
 
-const counter = ()=> {
+const counter = () => {
     console.log(count)
     count++
 
-
-    // recursion
-    setTimeout(counter,1000)
+    // recursion w/ base condn
+    if(count < 10){
+        setTimeout(counter, 1000)
+    }
 }
 
 counter()

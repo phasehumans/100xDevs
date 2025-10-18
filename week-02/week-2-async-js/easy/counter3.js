@@ -5,6 +5,6 @@ const counter = () => {
     count++
 
 
-    // recursion
+    // recursion -> w/o base condn
     setInterval(counter, 1000)
 }

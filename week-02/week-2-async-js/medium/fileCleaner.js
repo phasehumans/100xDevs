@@ -1,6 +1,12 @@
 const fs= require('fs')
 
 const cleanFile = (filepath) =>{
+
+    /* 
+    - readcontent
+    - clean content
+    - write clean content 
+    */
     fs.readFile(filepath, 'utf-8', (err, data) => {
         if(err){
             console.log("error while file reading")

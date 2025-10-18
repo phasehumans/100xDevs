@@ -1,6 +1,7 @@
 import fs from "fs"
 
 function write(filename, cb){
+    // writeFile takes 3 args - path, content, cb
     fs.writeFile(filename, "this is new line", (error)=>{
         cb()
     });
