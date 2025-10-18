@@ -17,7 +17,39 @@
 */
 
 class Calculator {
-  constructor(a,b, op){
+  constructor(res){
+    this.res = 0
+  }
+
+  add(num){
+    this.res = this.res + num
+  }
+
+  sub(num){
+    this.res = this.res - num
+  }
+
+  multi(num){
+    this.res = this.res * num
+  }
+
+  div(num){
+    // this.res = this.res / num
+
+    if(num == 0){
+      throw new console.error("invalid division");
+    }
+
+    this.res = this.res / num
+  }
+
+
+  clear(){
+    this.res = 0
+  }
+
+  dislay(){
+    return this.res
   }
 }
 

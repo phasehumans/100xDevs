@@ -11,7 +11,25 @@
 */
 
 class Todo {
+  constructor(){
+    this. todos= []
+  }
 
+  add(todo){
+    this.todos.push(todo)
+  }
+
+  remove(num){
+    this.todos.pop(num - 1)
+    // not pop
+  }
+
+  clear(){
+    this.todos = []
+  }
+
+
+  
 }
 
 module.exports = Todo;
