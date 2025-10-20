@@ -1,0 +1,107 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f4f8;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+input,
+select,
+button {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+}
+
+.type {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+.fire {
+    background: #ff7043;
+}
+
+.water {
+    background: #42a5f5;
+}
+
+.grass {
+    background: #66bb6a;
+}
+
+.electric {
+    background: #fdd835;
+    color: black;
+}
+
+.rock {
+    background: #8d6e63;
+}
+
+.psychic {
+    background: #ec407a;
+}
+
+.bug {
+    background: #9ccc65;
+}
+
+.ghost {
+    background: #7e57c2;
+}
+
+.dragon {
+    background: #5c6bc0;
+}
