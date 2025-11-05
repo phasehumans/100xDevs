@@ -25,7 +25,7 @@ router.post('/signup', async(req, res) => {
     }
 
     try {
-        const hashPassword = bcrypt.hash(password, 5)
+        const hashPassword = await bcrypt.hash(password, 5)
         const user = await User.create({
             firstName : firstName,
             lastName : lastName,
@@ -80,6 +80,7 @@ router.post('/login', async(req, res) => {
         res.json({
             token : token
         })
+        return
      }
 
      res.json({

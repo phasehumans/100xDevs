@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId
 const Schema = mongoose.Schema
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 // Connect to MongoDB
-mongoose.connect(
-  "mongodb+srv://chaitanya:CtGXOikbQ2T4ynux@cluster0.4fprs4w.mongodb.net/taskify"
-);
+mongoose.connect(process.env.MONGO_URL);
 
 // Define schemas
 
