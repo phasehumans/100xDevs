@@ -1,22 +1,116 @@
-const { Router } = require("express");
+const { Router, json } = require("express");
 const router = Router();
 const userMiddleware = require("../middleware/user");
+const {User} = require('../database/index')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const dotenv =require('dotenv')
+const {Todo} = require('../database/index')
+
+dotenv.config()
 
 // User Routes
-router.post('/signup', (req, res) => {
+router.post('/signup', async(req, res) => {
     // Implement user signup logic
+    const firstName = req.body.firstName
+    const lastName = req.body.lastName
+    const email = req.body.email
+    const password = req.body.password
+
+    if(!firstName || !lastName || !email || !password){
+        res.json({
+            message: "all fields are required"
+        })
+        return
+    }
+
+    try {
+        const hashPassword = bcrypt.hash(password, 5)
+        const user = await User.create({
+            firstName : firstName,
+            lastName : lastName,
+            email : email,
+            password : hashPassword
+        })
+    } catch (error) {
+        res.json({
+            message : "sign-up failed",
+            error : error
+        })
+        return
+    }
+
+    res.json({
+        message : "sign-up completed"
+    })
+
+
 });
 
-router.post('/login', (req, res) => {
+router.post('/login', async(req, res) => {
      // Implement user login logic
+     const email = req.body.email
+     const password = req.body.password
+
+     if(!email || !password){
+        res.json({
+            message : "all fields are required"
+        })
+        return
+     }
+
+     const user = await User.find({
+        email : email
+     })
+
+     if(!user){
+        res.json({
+            message : "User doesnot exist"
+        })
+        return
+     }
+
+     const userMatch = bcrypt.compare(password, user.password)
+
+     if(userMatch){
+        const token = jwt.sign({
+            id : user.id
+        }, process.env.JWT_SECRET)
+
+        res.json({
+            token : token
+        })
+     }
+
+     res.json({
+        message : "invalid email or password"
+     })
+
+
 });
 
-router.get('/todos', userMiddleware, (req, res) => {
+router.get('/todos', userMiddleware, async(req, res) => {
     // Implement logic for getting todos for a user
+
+    const userId = req.userId
+
+    const user = await Todo.findOne({
+        // createdby : userId
+        _createdby : { $in : user.map(x => x.userId) }
+    })
+
+
+    res.json({
+        todos: user
+    })
+
+    
+
 });
 
 router.post('/logout', userMiddleware, (req, res) => {
     // Implement logout logic
+    const userId = req.body
 });
 
 module.exports = router
