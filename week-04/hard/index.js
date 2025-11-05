@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const router = require("./routes/user");
+const userRouter = require("./routes/user");
+const todoRouter = require("./routes/todo")
 dotenv.config();
 
 const app = express();
@@ -11,7 +12,8 @@ app.use(express.json());
 app.get("/healthy", (req, res)=> res.send("I am Healthy"));
 
 //  start writing your routes here
-app.use('/api/v1/', router)
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/todo', todoRouter)
 
 app.listen(port, ()=> console.log(`server is running at http://localhost:${port}`));
 

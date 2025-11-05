@@ -91,26 +91,24 @@ router.post('/login', async(req, res) => {
 
 router.get('/todos', userMiddleware, async(req, res) => {
     // Implement logic for getting todos for a user
-
     const userId = req.userId
-
-    const user = await Todo.findOne({
-        // createdby : userId
-        _createdby : { $in : user.map(x => x.userId) }
+    const todos = await Todo.findOne({
+        createdby : userId
     })
-
 
     res.json({
-        todos: user
+        todos : todos
     })
-
-    
 
 });
 
 router.post('/logout', userMiddleware, (req, res) => {
     // Implement logout logic
-    const userId = req.body
+    
+    // remove from localStorage
+    res.json({
+        message : "logged out successfully"
+    })
 });
 
 module.exports = router
