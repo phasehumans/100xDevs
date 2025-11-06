@@ -8,6 +8,7 @@ const dotenv = require('dotenv')
 const app = express()
 dotenv.config()
 app.use(express.json())
+app.use(cors())
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/todo', todoRouter)
