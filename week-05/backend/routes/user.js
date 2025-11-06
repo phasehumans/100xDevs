@@ -42,7 +42,7 @@ userRouter.post('/signup', async(req, res) => {
     }
 })
 
-userRouter.post('/signin', (req, res) => {
+userRouter.post('/signin', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
 
@@ -64,7 +64,7 @@ userRouter.post('/signin', (req, res) => {
         return
     }
 
-    const passwordMatch = bcrypt.compare(password , user.password)
+    const passwordMatch = await bcrypt.compare(password , user.password)
 
     if(passwordMatch){
         const token = jwt.sign({
