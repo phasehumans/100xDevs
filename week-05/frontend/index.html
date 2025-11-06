@@ -7,7 +7,56 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- start writing code -->
-    <script src="./script.js"></script>    
+    <div class="container">
+        <header>
+            <h1>Taskify</h1>
+            <p class="muted">Simple TODO frontend for the provided backend</p>
+        </header>
+
+        <main>
+            <section id="auth" class="card">
+                <div class="tabs">
+                    <button id="show-signin" class="active">Sign in</button>
+                    <button id="show-signup">Sign up</button>
+                </div>
+
+                <div id="signin-form" class="form">
+                    <h3>Sign in</h3>
+                    <input id="signin-email" placeholder="Email" type="email">
+                    <input id="signin-password" placeholder="Password" type="password">
+                    <button id="btn-signin">Sign in</button>
+                </div>
+
+                <div id="signup-form" class="form hidden">
+                    <h3>Create account</h3>
+                    <input id="signup-first" placeholder="First name">
+                    <input id="signup-last" placeholder="Last name">
+                    <input id="signup-email" placeholder="Email" type="email">
+                    <input id="signup-password" placeholder="Password" type="password">
+                    <button id="btn-signup">Sign up</button>
+                </div>
+            </section>
+
+            <section id="app" class="card hidden">
+                <div class="top-row">
+                    <form id="todo-form">
+                        <input id="todo-title" placeholder="New todo title" required>
+                        <input id="todo-desc" placeholder="Description">
+                        <button type="submit">Add</button>
+                    </form>
+                    <div class="session">
+                        <span id="user-token-indicator" class="muted">Not signed in</span>
+                        <button id="btn-signout">Sign out</button>
+                    </div>
+                </div>
+
+                <div id="todos" class="todos"></div>
+            </section>
+        </main>
+
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

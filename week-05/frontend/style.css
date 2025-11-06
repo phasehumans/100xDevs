@@ -1,1 +1,32 @@
-  /* start from here */
+:root{
+  --bg: #f6f8fa;
+  --card: #fff;
+  --accent: #2563eb;
+  --muted: #6b7280;
+}
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, Arial; margin:0; background:var(--bg); color:#111}
+.container{max-width:900px; margin:28px auto; padding:16px}
+header{margin-bottom:18px}
+header h1{margin:0}
+.muted{color:var(--muted)}
+.card{background:var(--card); padding:14px; border-radius:8px; box-shadow:0 1px 3px rgba(16,24,40,0.05); margin-bottom:12px}
+.tabs{display:flex; gap:8px; margin-bottom:8px}
+.tabs button{padding:8px 12px; border-radius:6px; border:1px solid #e5e7eb; background:transparent; cursor:pointer}
+.tabs button.active{background:var(--accent); color:#fff; border-color:transparent}
+.form input{display:block; width:100%; padding:8px; margin:6px 0; border-radius:6px; border:1px solid #e5e7eb}
+.form button{padding:8px 12px; background:var(--accent); color:#fff; border:none; border-radius:6px; cursor:pointer}
+.hidden{display:none}
+.top-row{display:flex; justify-content:space-between; align-items:center; gap:12px}
+#todo-form{display:flex; gap:8px}
+#todo-form input{padding:8px; border-radius:6px; border:1px solid #e5e7eb}
+#todo-form button{padding:8px 12px; background:var(--accent); color:#fff; border:none; border-radius:6px}
+.todos{margin-top:12px; display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:12px}
+.todo{border:1px solid #e5e7eb; padding:10px; border-radius:8px; background:#fff}
+.todo-title{display:flex; align-items:center; gap:8px; font-weight:600}
+.todo-desc{color:var(--muted); margin-top:8px}
+.todo-actions{display:flex; justify-content:flex-end; gap:6px; margin-top:8px}
+.todo-actions button{background:transparent; border:1px solid #e5e7eb; padding:6px 8px; border-radius:6px; cursor:pointer}
+.done{text-decoration:line-through; color:var(--muted)}
+.empty{padding:20px; text-align:center; color:var(--muted)}
+.toast{position:fixed; right:20px; bottom:20px; background:#111; color:#fff; padding:10px 14px; border-radius:6px}
