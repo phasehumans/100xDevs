@@ -2,9 +2,11 @@
 const express = require('express')
 const { todoRouter } = require('./routes/todo')
 const { userRouter } = require('./routes/user')
-const { default: mongoose } = require('mongoose')
+const { mongoose } = require('mongoose')
+const dotenv = require('dotenv')
 
 const app = express()
+dotenv.config()
 app.use(express.json())
 
 app.use('/api/v1/user', userRouter)

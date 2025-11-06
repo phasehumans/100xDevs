@@ -1,6 +1,6 @@
 //  start writing your code from here
 const {Router} = require('express')
-const { UserModel } = require('../db')
+const { UserModel, TodoModel } = require('../db')
 const userRouter = Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -81,6 +81,18 @@ userRouter.post('/signin', (req, res) => {
     }
 })
 
+userRouter.get('/todos', authMiddleware, async(req, res) =>{
+    const userId = req.userId
+
+    const todos = await TodoModel.find({
+        createdBy : userId
+    })
+
+    res.json({
+        todos : todos
+    })
+
+})
 
 module.exports = {
     userRouter : userRouter
