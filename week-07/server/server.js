@@ -3,13 +3,18 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const dotenv = require("dotenv");
+const bcrypt = require('bcrypt');
+const cors = require('cors');
+const path = require('path');
 dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
-const secret = process.env.JWT_SECRERT;  // This should be in an environment variable in a real application
-const port = process.env.PORT;
+// Provide sensible defaults so the server can run locally without env vars
+const secret = process.env.JWT_SECRET || process.env.JWT_SECRERT || 'change_this_secret';
+const port = process.env.PORT || 3000;
 
 // Define mongoose schemas
 const userSchema = new mongoose.Schema({
@@ -80,8 +85,11 @@ const authMiddleware = async (req, res, next) => {
 };
 
 // Connect to MongoDB
-mongoose.connect('<YourMongoDbConnectionString>'); 
+mongoose.connect(process.env.MONGO_URL); 
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client-easy/index.html"));
+});
 
 // Admin routes
 app.post('/admin/signup', async(req, res) => {
