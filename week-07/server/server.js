@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const dotenv = require("dotenv");
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-const path = require('path');
+// const path = require('path');
 dotenv.config();
 const app = express();
 
@@ -86,6 +86,12 @@ const authMiddleware = async (req, res, next) => {
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL); 
+
+// const path = require("path");
+
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../client-easy")));
+
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client-easy/index.html"));
