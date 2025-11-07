@@ -271,16 +271,21 @@ app.post('/users/login', async(req, res) => {
 });
 
 app.get('/users/courses', authMiddleware, async(req, res) => {
-    
+    const userId = req.userId
+
+    try {
+        const allcourseslist = await Course.find({})
+        res.json({
+            message : "list of all courses",
+            courses : allcourseslist
+        })
+    } catch (error) {
+        res.json({
+            message : "failed to load courses"
+        })
+    }
 });
 
-app.post('/users/courses/:courseId', authMiddleware, async(req, res) => {
-    
-});
-
-app.get('/users/purchasedCourses', authMiddleware, async(req, res) => {
-    
-});
 
 app.listen(port, () => {
     console.log('Server is listening on port 3000');
